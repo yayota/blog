@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+  <link rel="stylesheet" href="/css/style-db97c835f88a11034a9bb34f063ff69a.css" type="text/css" />
+  <link rel="alternate" type="application/atom+xml" href="https://tomafro.net/atom.xml" />
+  <link rel="canonical" href="https://tomafro.net/tags/tiny"/>
+  <script type="text/javascript" src="//use.typekit.com/brv6igt.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <title>Posts tagged with tiny &middot; tomafro.net</title>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1103395-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+          'http://www') + '.google-analytics.com/ga.js';
+      ga.setAttribute('async', 'true');
+      document.documentElement.firstChild.appendChild(ga);
+    })();
+  </script>
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <nav>
+  <ul>
+    <li><a href='/'>tomafro.net</a><span class='byline'> &ndash; a blog by Tom Ward</span></li>
+    <li><a href='/about'>about</a></li>
+    <li><a href='https://github.com/tomafro'>github</a></li>
+    <li><a href='https://twitter.com/tomafro'>twitter</a></li>
+  </ul>
+</nav>
+  <article>
+  <header>
+    <h1><a href="/2011/09/geohash-toy-code-released">Geohash toy: code released</a></h1>
+  </header>
+  <div class="content">
+    <p>A couple of weeks ago I <a href="http://tomafro.net/2011/09/a-small-toy-to-explore-geohashes">wrote about a small toy app</a> I&rsquo;d written to explore geohashes.  Now I&rsquo;ve cleaned the code up a little, upgraded it to rails 3.1 and released it <a href="https://github.com/tomafro/geohash-explorer">here on github</a>.  Enjoy.</p>
+
+  </div>
+  <footer>
+    <span class='author'><a rel='author' href='http://tomafro.net'>Tom Ward</a></span>
+    <span class='date'><a href="/2011/09">24th September 2011</a></span>
+    <ul>
+      <li><a href="/tags/geohash" rel="tag">geohash</a></li>
+      <li><a href="/tags/toy" rel="tag">toy</a></li>
+      <li><a href="/tags/code" rel="tag">code</a></li>
+      <li><a href="/tags/app" rel="tag">app</a></li>
+      <li><a href="/tags/github" rel="tag">github</a></li>
+      <li><a href="/tags/tiny" rel="tag">tiny</a></li>
+    </ul>
+  </footer>
+</article>
+<article>
+  <header>
+    <h1><a href="/2010/01/tip-relative-paths-with-file-expand-path">Tip: Relative paths with File.expand_path</a></h1>
+  </header>
+  <div class="content">
+    <p>You probably know about the <code>__FILE__</code> magic constant.  It holds the filename of the currently executing ruby source file, relative to the execution directory.  So with the following saved as <code>/code/examples/path_example.rb</code>:</p>
+
+<div class="highlight"><pre><span class="nb">puts</span> <span class="bp">__FILE__</span>
+</pre>
+</div>
+
+
+<p>Running this file from the <code>/code</code> folder will output <code>examples/path_example.rb</code></p>
+
+<p>This is often used to load files on paths relative to the current file.  The way I&rsquo;ve used it before is like this:</p>
+
+<div class="highlight"><pre><span class="n">config_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">),</span> <span class="s2">&quot;config.yml&quot;</span><span class="p">))</span>
+</pre>
+</div>
+
+
+<p>This works, but it&rsquo;s a bit clunky.</p>
+
+<p>What I didn&rsquo;t realise until reading the rails source code the other day, is that <code>File.expand_path</code> can take a second argument &ndash; a starting directory.  Also, this argument doesn&rsquo;t actually have to be a path to a directory, it also accepts a path to a file.  With this knowledge we can shorten the above to the following:</p>
+
+<div class="highlight"><pre><span class="n">config_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../config.yml&quot;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+</pre>
+</div>
+
+
+<p>Much simpler.</p>
+
+  </div>
+  <footer>
+    <span class='author'><a rel='author' href='http://tomafro.net'>Tom Ward</a></span>
+    <span class='date'><a href="/2010/01">23rd January 2010</a></span>
+    <ul>
+      <li><a href="/tags/ruby" rel="tag">ruby</a></li>
+      <li><a href="/tags/tip" rel="tag">tip</a></li>
+      <li><a href="/tags/tiny" rel="tag">tiny</a></li>
+      <li><a href="/tags/file" rel="tag">file</a></li>
+      <li><a href="/tags/expand-path" rel="tag">expand-path</a></li>
+    </ul>
+  </footer>
+</article>
+<article>
+  <header>
+    <h1><a href="/2009/11/zoom-keyboard-shortcut-for-os-x">Tip: Zoom keyboard shortcut for OS X</a></h1>
+  </header>
+  <div class="content">
+    <p>In the Terminal run:</p>
+
+<div class="highlight"><pre>defaults write NSGlobalDomain NSUserKeyEquivalents <span class="s1">&#39;{&quot;Zoom&quot; = &quot;@^Z&quot;; &quot;Zoom Window&quot; = &quot;@^Z&quot;; }&#39;</span>
+</pre>
+</div>
+
+
+<p>Quit and relaunch your applications, and <span class='osx-shortcut'>⌃⌘Z</span> should zoom and unzoom.</p>
+
+<p>Stolen from <a href="http://www.macosxhints.com/article.php?story=20051227001809626">macoshints.com</a>, posted here for my own benefit.</p>
+
+  </div>
+  <footer>
+    <span class='author'><a rel='author' href='http://tomafro.net'>Tom Ward</a></span>
+    <span class='date'><a href="/2009/11"> 6th November 2009</a></span>
+    <ul>
+      <li><a href="/tags/tip" rel="tag">tip</a></li>
+      <li><a href="/tags/osx" rel="tag">osx</a></li>
+      <li><a href="/tags/keyboard" rel="tag">keyboard</a></li>
+      <li><a href="/tags/shortcut" rel="tag">shortcut</a></li>
+      <li><a href="/tags/zoom" rel="tag">zoom</a></li>
+      <li><a href="/tags/tiny" rel="tag">tiny</a></li>
+    </ul>
+  </footer>
+</article>
+<article>
+  <header>
+    <h1><a href="/2009/10/tip-cdpath-am-i-the-last-to-know">Tip: cdpath - Am I the last to know?</a></h1>
+  </header>
+  <div class="content">
+    <p>This one is just so simple, I can&rsquo;t believe I didn&rsquo;t know about it earlier.</p>
+
+<p>First, setup the cdpath or CDPATH variable:</p>
+
+<div class="highlight"><pre><span class="nv">cdpath</span><span class="o">=(</span>~ ~/Projects/apps ~/Projects/tools ~/Projects/plugins ~/Projects/sites<span class="o">)</span>
+</pre>
+</div>
+
+
+<p>Now, changing directory in the shell becomes a whole world easier:</p>
+
+<div class='highlight'><pre><span class="s1">tomw@fellini:~<span class='nv'>$ </span></span><span class='nb'>cd </span>super-secret-app
+~/Projects/apps/super-secret-app
+<span class="s1">tomw@fellini:~/Projects/apps/super-secret-app<span class='nv'>$ </span></span><span class='nb'>cd </span>Documents
+~/Documents
+<span class="s1">tomw@fellini:~/Documents<span class='nv'>$ </span></span><span class='nb'>cd </span>tomafro.net
+~/Projects/sites/tomafro.net
+<span class="s1">tomw@fellini:~/Projects/sites/tomafro.net <span class='err'>$</span></span>
+</pre>
+</div>
+
+
+<p>I&rsquo;ve already added this to <a href="http://github.com/tomafro/dotfiles">my dotfiles</a>.</p>
+
+  </div>
+  <footer>
+    <span class='author'><a rel='author' href='http://tomafro.net'>Tom Ward</a></span>
+    <span class='date'><a href="/2009/10"> 6th October 2009</a></span>
+    <ul>
+      <li><a href="/tags/tiny" rel="tag">tiny</a></li>
+      <li><a href="/tags/tip" rel="tag">tip</a></li>
+      <li><a href="/tags/zsh" rel="tag">zsh</a></li>
+      <li><a href="/tags/terminal" rel="tag">terminal</a></li>
+      <li><a href="/tags/cdpath" rel="tag">cdpath</a></li>
+    </ul>
+  </footer>
+</article>
+<article>
+  <header>
+    <h1><a href="/2009/08/tip-open-new-tab-in-osx-terminal">Tip: Open new tab in OS X Terminal</a></h1>
+  </header>
+  <div class="content">
+    <p>Another simple shell function, this time just for OS X.</p>
+
+<p>Usage is simple: <code>tab &lt;command&gt;</code> opens a new tab in Terminal, and runs the given command in the current working directory.  For example <code>tab script/server</code> would open a new tab and run <code>script/server</code>.</p>
+
+<div class="highlight"><pre>tab <span class="o">()</span> <span class="o">{</span>
+  osascript 2&gt;/dev/null <span class="s">&lt;&lt;EOF</span>
+<span class="s">    tell application &quot;System Events&quot;</span>
+<span class="s">      tell process &quot;Terminal&quot; to keystroke &quot;t&quot; using command down</span>
+<span class="s">    end</span>
+<span class="s">    tell application &quot;Terminal&quot;</span>
+<span class="s">      activate</span>
+<span class="s">      do script with command &quot;cd $PWD; $*&quot; in window 1</span>
+<span class="s">    end tell</span>
+<span class="s">  EOF</span>
+<span class="o">}</span>
+</pre>
+</div>
+
+
+  </div>
+  <footer>
+    <span class='author'><a rel='author' href='http://tomafro.net'>Tom Ward</a></span>
+    <span class='date'><a href="/2009/08">19th August 2009</a></span>
+    <ul>
+      <li><a href="/tags/tiny" rel="tag">tiny</a></li>
+      <li><a href="/tags/tip" rel="tag">tip</a></li>
+      <li><a href="/tags/zsh" rel="tag">zsh</a></li>
+      <li><a href="/tags/osx" rel="tag">osx</a></li>
+      <li><a href="/tags/terminal" rel="tag">terminal</a></li>
+    </ul>
+  </footer>
+</article>
+<article>
+  <header>
+    <h1><a href="/2009/08/tip-create-and-move-to-directory">Tip: Create and move to directory</a></h1>
+  </header>
+  <div class="content">
+    <p>Before my next post on database indexes, here&rsquo;s a useful little function from the <a href="http://peepcode.com/products/advanced-command-line">Advanced Command Line peepcode screencast</a> (which I highly recommend).:</p>
+
+<div class="highlight"><pre><span class="c"># Create and move to a directory in a single command</span>
+<span class="c"># Usage: take ~/Projects/tools/awesometer</span>
+
+take<span class="o">()</span> <span class="o">{</span>
+  mkdir -p <span class="nv">$1</span>
+  <span class="nb">cd</span> <span class="nv">$1</span>
+<span class="o">}</span>
+</pre>
+</div>
+
+
+  </div>
+  <footer>
+    <span class='author'><a rel='author' href='http://tomafro.net'>Tom Ward</a></span>
+    <span class='date'><a href="/2009/08">12th August 2009</a></span>
+    <ul>
+      <li><a href="/tags/tiny" rel="tag">tiny</a></li>
+      <li><a href="/tags/tip" rel="tag">tip</a></li>
+      <li><a href="/tags/zsh" rel="tag">zsh</a></li>
+      <li><a href="/tags/peepcode" rel="tag">peepcode</a></li>
+    </ul>
+  </footer>
+</article>
+<article>
+  <header>
+    <h1><a href="/2009/08/tip-move-to-directory-and-open-in-textmate">Tip: Move to directory and open in TextMate</a></h1>
+  </header>
+  <div class="content">
+    <p>Since adding this to <a href="http://github.com/tomafro/dotfiles/tree/master/zsh">my zsh configuration</a>, I&rsquo;m finding I use it all the time:</p>
+
+<div class="highlight"><pre><span class="c"># Change directory and open TextMate in a single command</span>
+<span class="c"># Usage: tm ~/Projects/sites/tomafro.net</span>
+
+tm<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">cd</span> <span class="nv">$1</span>
+  mate <span class="nv">$1</span>
+<span class="o">}</span>
+</pre>
+</div>
+
+
+  </div>
+  <footer>
+    <span class='author'><a rel='author' href='http://tomafro.net'>Tom Ward</a></span>
+    <span class='date'><a href="/2009/08"> 7th August 2009</a></span>
+    <ul>
+      <li><a href="/tags/tiny" rel="tag">tiny</a></li>
+      <li><a href="/tags/tip" rel="tag">tip</a></li>
+      <li><a href="/tags/zsh" rel="tag">zsh</a></li>
+      <li><a href="/tags/osx" rel="tag">osx</a></li>
+      <li><a href="/tags/textmate" rel="tag">textmate</a></li>
+    </ul>
+  </footer>
+</article>
+
+</body>
+</html>

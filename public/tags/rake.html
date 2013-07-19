@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+  <link rel="stylesheet" href="/css/style-db97c835f88a11034a9bb34f063ff69a.css" type="text/css" />
+  <link rel="alternate" type="application/atom+xml" href="https://tomafro.net/atom.xml" />
+  <link rel="canonical" href="https://tomafro.net/tags/rake"/>
+  <script type="text/javascript" src="//use.typekit.com/brv6igt.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <title>Posts tagged with rake &middot; tomafro.net</title>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1103395-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+          'http://www') + '.google-analytics.com/ga.js';
+      ga.setAttribute('async', 'true');
+      document.documentElement.firstChild.appendChild(ga);
+    })();
+  </script>
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <nav>
+  <ul>
+    <li><a href='/'>tomafro.net</a><span class='byline'> &ndash; a blog by Tom Ward</span></li>
+    <li><a href='/about'>about</a></li>
+    <li><a href='https://github.com/tomafro'>github</a></li>
+    <li><a href='https://twitter.com/tomafro'>twitter</a></li>
+  </ul>
+</nav>
+  <article>
+  <header>
+    <h1><a href="/2012/06/tip-bundler-with-binstubs">Tip: Bundler with --binstubs</a></h1>
+  </header>
+  <div class="content">
+    <p>In <a href="/2011/09/tip-automatic-bundle-exec-for-rake-and-more">a previous blog</a>, I wrote how I&rsquo;d aliased commands such as <code>rake</code>, <code>cap</code> and <code>rspec</code> to run either with or without <code>bundle exec</code>, based on the presence of a <code>Gemfile</code>.  I gave up on that a while ago.  Instead, I&rsquo;ve started installing all my bundles like this:</p>
+
+<div class="highlight"><pre>bundle install --path .bundle/gems --binstubs .bundle/bin
+</pre>
+</div>
+
+
+<p>I often use features like <code>bundle open &lt;gem&gt;</code> to debug and edit failing gems, so I like to keep each application&rsquo;s gems isolated.  The <code>--path .bundle/gems</code> installs them within an application&rsquo;s <code>.bundle</code> directory.  As well as isolating my gems, it has the added benefit that I can blow away the gemset with <code>rm -rf .bundle</code></p>
+
+<p>The <code>--binstubs .bundle/bin</code> option installs bundle-aware scripts for each command provided by a bundled gem.  For example, a bundle including <code>rake</code> will generate a <code>.bundle/bin/rake</code> script.  By adding <code>./.bundle/bin</code> to the front of my environment <code>PATH</code>, the bundled version of <code>rake</code> will run when I&rsquo;m in the application folder.  I never have to type <code>bundle exec</code>!</p>
+
+<p>Obviously typing that long <code>bundle install</code> command each time is tedious, so I&rsquo;ve aliased it to <code>bi</code>:</p>
+
+<div class="highlight"><pre><span class="nb">alias </span><span class="nv">bi</span><span class="o">=</span><span class="s1">&#39;bundle install --path .bundle/gems --binstubs .bundle/bin&#39;</span>
+</pre>
+</div>
+
+
+<p>I&rsquo;ve been using these options for a few months, and so far I&rsquo;m very happy with them.</p>
+
+  </div>
+  <footer>
+    <span class='author'><a rel='author' href='http://tomafro.net'>Tom Ward</a></span>
+    <span class='date'><a href="/2012/06">21st June 2012</a></span>
+    <ul>
+      <li><a href="/tags/ruby" rel="tag">ruby</a></li>
+      <li><a href="/tags/gem" rel="tag">gem</a></li>
+      <li><a href="/tags/rake" rel="tag">rake</a></li>
+      <li><a href="/tags/bundler" rel="tag">bundler</a></li>
+      <li><a href="/tags/tip" rel="tag">tip</a></li>
+    </ul>
+  </footer>
+</article>
+<article>
+  <header>
+    <h1><a href="/2011/09/tip-automatic-bundle-exec-for-rake-and-more">Tip: Automatic bundle exec for rake and other gems</a></h1>
+  </header>
+  <div class="content">
+    <p>It&rsquo;s irritating to run gem commands like <code>rake</code>, <code>cap</code>, <code>rspec</code> and others, only to find they needed to be executed via <code>bundle exec</code>.  As a simple solution, I use a simple zsh function, combined with aliases for commonly used commands.</p>
+
+<p>Here&rsquo;s the function (which I&rsquo;ve named <code>be</code>):</p>
+
+<div class="highlight"><pre><span class="k">if</span> <span class="o">[[</span> -a Gemfile <span class="o">]]</span>; <span class="k">then</span>
+<span class="k">  </span>bundle <span class="nb">exec</span> <span class="nv">$*</span>
+<span class="k">else</span>
+<span class="k">  </span><span class="nb">command</span> <span class="nv">$*</span>
+<span class="k">fi</span>
+</pre>
+</div>
+
+
+<p>It&rsquo;s very simple.  If there&rsquo;s a <code>Gemfile</code> in the pwd, it runs commands through bundle exec.  Otherwise it just runs them.</p>
+
+<p>I&rsquo;ve combined this with some aliases for much less pain and less frustration:</p>
+
+<div class="highlight"><pre><span class="nb">alias </span><span class="nv">rake</span><span class="o">=</span><span class="s1">&#39;be rake&#39;</span>
+<span class="nb">alias </span><span class="nv">cap</span><span class="o">=</span><span class="s1">&#39;be cap&#39;</span>
+<span class="nb">alias </span><span class="nv">rspec</span><span class="o">=</span><span class="s1">&#39;be rspec&#39;</span>
+</pre>
+</div>
+
+
+
+
+  </div>
+  <footer>
+    <span class='author'><a rel='author' href='http://tomafro.net'>Tom Ward</a></span>
+    <span class='date'><a href="/2011/09"> 1st September 2011</a></span>
+    <ul>
+      <li><a href="/tags/zsh" rel="tag">zsh</a></li>
+      <li><a href="/tags/ruby" rel="tag">ruby</a></li>
+      <li><a href="/tags/gem" rel="tag">gem</a></li>
+      <li><a href="/tags/rake" rel="tag">rake</a></li>
+      <li><a href="/tags/bundler" rel="tag">bundler</a></li>
+      <li><a href="/tags/tip" rel="tag">tip</a></li>
+    </ul>
+  </footer>
+</article>
+
+</body>
+</html>
