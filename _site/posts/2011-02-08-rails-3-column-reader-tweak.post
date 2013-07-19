@@ -1,0 +1,21 @@
+[@kraykray](http://twitter.com/kraykray) was nice enough to let me know that Rails 3.03 had broken my column-reader code.
+
+I've always seen it as a toy rather than a serious project, but getting a bug report made me re-evaluate.  If people are using it, even a tiny piece of code like this deserves a proper home.
+
+So here it is, as both [a github repository](https://github.com/tomafro/rails-activerecord-columnreader) and [a gem](http://rubygems.org/gems/activerecord-column-reader).  Enjoy!}
+<section class="related-links">
+<h1>Related posts:</h1>
+<ul>
+
+<li>
+  <a class='title' href=""></a>
+  <div class='meta'>
+  <span class='date'><a href="}">}</a></span>
+  <ul class='tags'>
+    <li><a href="/tags/}" rel="tag">}</a></li>
+  </ul>
+  </div>
+</li>
+
+</ul>
+</section>
